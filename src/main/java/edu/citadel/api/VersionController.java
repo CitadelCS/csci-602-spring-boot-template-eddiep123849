@@ -1,7 +1,9 @@
 package edu.citadel.api;
 
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+
 
 
 @RestController

@@ -43,6 +43,8 @@ public class StepDefs extends SpringIntegrationTest {
     // I use this in my "endIt" method. It makes it easier to see the separate tests.
     private static int numTest = 0;
 
+    private CloseableHttpResponse objectResponse;
+
     public StepDefs(){
         // I'm not sure if the super constructor does anything.
         super();
@@ -57,12 +59,12 @@ public class StepDefs extends SpringIntegrationTest {
     public void itllworkcommaright(){
         System.out.println("We are now inside the \"When\" response method!");
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpGet getRequest = new HttpGet("http://localhost:5001/info");
+        HttpGet getRequest = new HttpGet("http://localhost:5001/version");
 
-        try (CloseableHttpResponse response = httpClient.execute(getRequest)){
-
+        try {
+            objectResponse = httpClient.execute(getRequest);
             System.out.println("Holy shmoly, it freaking works!");
-            System.out.println("Here's the code: " + response.getStatusLine());
+            System.out.println("Here's the code: " + objectResponse.getStatusLine());
 
         }
         catch (Exception e){
@@ -97,6 +99,34 @@ public class StepDefs extends SpringIntegrationTest {
         System.out.println("End of test " + numTest);
         // Reset the standard output style
         System.out.println("\u001B[0m");
+    }
+
+    @Then("they will receive the response {string}")
+    public void checkResponse(String string){
+        try {
+            if (objectResponse == null) {
+                System.out.println("The HTTP request never went through");
+            } else {
+                System.out.println("The HTTP response went through");
+                System.out.println("Here it is. I'm reading it by the byte:");
+                int data = objectResponse.getEntity().getContent().read();
+                String response = "";
+                while (data != -1){
+                    //System.out.print((char) data);
+                    response = response + ((char) data);
+                    data = objectResponse.getEntity().getContent().read();
+                }
+                if (response.equalsIgnoreCase(string))
+                    System.out.println("It passed");
+                else
+                    System.out.println("It didn't pass");
+
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
 

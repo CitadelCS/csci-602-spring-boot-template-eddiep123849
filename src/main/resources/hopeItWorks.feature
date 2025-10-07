@@ -8,7 +8,7 @@
 
 # Ok, I JUST installed a cucumber plugin for Java, and now, this file has
 # color and line spacing suggestions! This'll be helpful because it'll
-# make Gherkin syntax easier to use as eveything is highllighted and the IDE looks
+# make Gherkin syntax easier to use as eveyrthing is highlighted and the IDE looks
 # for syntax mistakes. Ok, now we're getting somewhere.
 Feature:
   This test will do a simple println to the console when it receives
@@ -17,4 +17,5 @@ Feature:
   something a little more complicated.
   Scenario:
     When the client calls /version
+    Then they will receive the response "1.0"
     Then FINITO
