@@ -222,6 +222,7 @@ public class StepDefs extends SpringIntegrationTest {
         HttpGet getRequest = new HttpGet(endpoint);
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
+        System.out.println("Dr. Ravan is about to try and hit the endpoint: " + endpoint);
         objectResponse = httpClient.execute(getRequest);
     }
 
@@ -248,9 +249,9 @@ public class StepDefs extends SpringIntegrationTest {
 
         if (!foundUserID)
             // We didn't get the desired response
-            throw new IOException("There was no userID in the repsonse");
-        else
-            ; // We're good!
+            throw new IOException("There was no userID in the response");
+        // We're good!
+        System.out.println("Dr. Ravan received the userID: " + userID);
     }
 
     @And("the userID should be {string}")
