@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.http.HttpStatus;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/main/resources")
+@CucumberOptions(features = "src/test/java/resources")
 public class CucumberIntegrationTest {
 
 }

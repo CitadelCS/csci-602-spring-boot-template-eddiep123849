@@ -3,10 +3,11 @@
 # happen by using them. This will be a simple test that should work, followed by a simple
 # test that should fail, just to see how cucumber reacts to success and failure.
 
-  Feature:
+  Feature: itFrickinWorks, need I say more?
     Scenario: Eddie is writing a simple good path test
       When the client goes to /version... yeah, that's all I got.
       Then 1+1 will equal 2
+      And the client will be happy
       Then FINITO
 
     #Scenario:
